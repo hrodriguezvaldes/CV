@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hector Rodriguez Valdes — Digital Transformation & Education Strategy Lead. Interactive CV.">
+<title>Hector Rodriguez Valdes — Interactive CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBF9F4;
+    --bg-elevated: #F5F1E8;
+    --bg-sidebar: #F0EBDD;
+    --ink: #1A1A1A;
+    --ink-muted: #4A4A4A;
+    --ink-faint: #8A8A8A;
+    --rule: #D8D2C2;
+    --rule-strong: #B8B0A0;
+    --accent-navy: #1F3864;
+    --accent-maroon: #800000;
+    --shadow: rgba(31, 56, 100, 0.08);
+
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'EB Garamond', Georgia, serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --base-size: 17px;
+    --space-section: 3rem;
+  }
+
+  [data-theme="dark"] {
+    --bg: #15171C;
+    --bg-elevated: #1E2128;
+    --bg-sidebar: #1A1D23;
+    --ink: #F0EBE0;
+    --ink-muted: #C4BDAE;
+    --ink-faint: #8A8378;
+    --rule: #2E3138;
+    --rule-strong: #3E4148;
+    --accent-navy: #8FB3E8;
+    --accent-maroon: #E8A4A4;
+    --shadow: rgba(0, 0, 0, 0.4);
+  }
+
+  [data-size="large"] { --base-size: 19px; }
+  [data-size="xlarge"] { --base-size: 21px; }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; font-size: var(--base-size); }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+    html { scroll-behavior: auto; }
+  }
+
+  .skip-link {
+    position: absolute; top: -100px; left: 1rem;
+    background: var(--accent-navy); color: var(--bg);
+    padding: 0.75rem 1.25rem; text-decoration: none;
+    font-family: var(--font-mono); font-size: 0.85rem;
+    z-index: 1000; border-radius: 4px; transition: top 0.2s;
+  }
+  .skip-link:focus { top: 1rem; }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+
+  /* LAYOUT */
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 100vh;
+  }
+
+  @media (min-width: 900px) {
+    .layout { grid-template-columns: 320px 1fr; }
+  }
+
+  @media (min-width: 1200px) {
+    .layout { grid-template-columns: 360px 1fr; }
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    background: var(--bg-sidebar);
+    border-bottom: 1px solid var(--rule);
+    padding: 2rem 1.5rem;
+    transition: background-color 0.4s ease;
+  }
+
+  @media (min-width: 900px) {
+    .sidebar {
+      position: sticky; top: 0; height: 100vh;
+      border-right: 1px solid var(--rule);
+      border-bottom: none;
+      padding: 2.5rem 2rem;
+      overflow-y: auto;
+      display: flex; flex-direction: column;
+    }
+  }
+
+  .sidebar-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent-maroon);
+    margin-bottom: 0.75rem;
+  }
+
+  .sidebar h1 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2rem, 4.5vw, 2.6rem);
+    line-height: 1.05;
+    margin: 0 0 1rem;
+    color: var(--accent-navy);
+    letter-spacing: -0.015em;
+  }
+
+  .sidebar-tagline {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--ink-muted);
+    line-height: 1.4;
+    margin: 0 0 1.5rem;
+    font-weight: 400;
+  }
+
+  .sidebar-contact {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .sidebar-contact a {
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--ink-faint);
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .sidebar-contact a:hover, .sidebar-contact a:focus-visible {
+    color: var(--accent-navy);
+    border-bottom-color: var(--accent-navy);
+    outline: none;
+  }
+
+  .sidebar-contact-row { display: block; word-break: break-word; }
+
+  .sidebar-nav { margin-bottom: 1.5rem; }
+
+  .sidebar-nav-title {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-faint);
+    margin-bottom: 0.75rem;
+  }
+
+  .sidebar-nav ul { list-style: none; padding: 0; margin: 0; }
+  .sidebar-nav li { margin-bottom: 0.15rem; }
+
+  .sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--ink-muted);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    padding: 0.35rem 0;
+    transition: color 0.2s, padding 0.2s;
+  }
+
+  .sidebar-nav a:hover, .sidebar-nav a:focus-visible {
+    color: var(--accent-navy);
+    padding-left: 0.5rem;
+    outline: none;
+  }
+
+  .sidebar-nav a.active {
+    color: var(--accent-navy);
+    font-weight: 600;
+  }
+
+  .sidebar-nav-num {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent-maroon);
+    letter-spacing: 0.05em;
+    min-width: 1.75rem;
+  }
+
+  .sidebar-controls {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .ctrl-btn {
+    background: transparent;
+    border: 1px solid var(--rule-strong);
+    color: var(--ink-muted);
+    padding: 0.4rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .ctrl-btn:hover, .ctrl-btn:focus-visible {
+    border-color: var(--accent-navy);
+    color: var(--accent-navy);
+    outline: none;
+  }
+
+  /* MAIN */
+  .main {
+    padding: 2.5rem 1.5rem 4rem;
+    max-width: 780px;
+    width: 100%;
+  }
+
+  @media (min-width: 900px) {
+    .main { padding: 3.5rem 3rem 5rem; }
+  }
+
+  section {
+    margin-bottom: var(--space-section);
+    scroll-margin-top: 2rem;
+  }
+
+  section:last-child { margin-bottom: 0; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-number {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent-maroon);
+    letter-spacing: 0.1em;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    margin: 0;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    flex: 1;
+    line-height: 1.1;
+  }
+
+  /* Collapsible */
+  .collapse-toggle {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-muted);
+    width: 1.75rem;
+    height: 1.75rem;
+    cursor: pointer;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .collapse-toggle:hover, .collapse-toggle:focus-visible {
+    border-color: var(--accent-navy);
+    color: var(--accent-navy);
+    outline: none;
+  }
+
+  .toggle-icon {
+    transition: transform 0.3s ease;
+    display: inline-block;
+    font-size: 0.75rem;
+  }
+
+  .collapse-toggle[aria-expanded="false"] .toggle-icon {
+    transform: rotate(-90deg);
+  }
+
+  .collapsible-content {
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+  }
+
+  .collapsible-content[aria-hidden="true"] {
+    max-height: 0 !important;
+    opacity: 0;
+  }
+
+  /* Summary */
+  .summary {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--ink-muted);
+  }
+
+  .summary strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* Pillars */
+  .pillars {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 700px) {
+    .pillars { grid-template-columns: 1fr 1fr; }
+  }
+
+  .pillar {
+    border-left: 2px solid var(--accent-maroon);
+    padding: 0.25rem 0 0.25rem 1rem;
+  }
+
+  .pillar h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+    color: var(--ink);
+    line-height: 1.25;
+  }
+
+  .pillar p {
+    margin: 0;
+    color: var(--ink-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  /* Achievements */
+  .achievements {
+    display: grid;
+    gap: 0.85rem;
+    counter-reset: ach;
+  }
+
+  .achievement {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+
+  .achievement::before {
+    counter-increment: ach;
+    content: counter(ach, decimal-leading-zero);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent-maroon);
+  }
+
+  .achievement p {
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* Roles */
+  .role {
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .role:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .role-header { margin-bottom: 0.75rem; }
+
+  .role-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 0.2rem;
+    line-height: 1.2;
+  }
+
+  .role-meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .role-meta span + span::before {
+    content: " · ";
+    margin: 0 0.4rem;
+  }
+
+  .role ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+  }
+
+  .role li {
+    position: relative;
+    padding: 0.25rem 0 0.25rem 1.25rem;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    font-size: 1rem;
+  }
+
+  .role li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent-maroon);
+    font-weight: 600;
+  }
+
+  /* Tools */
+  .tools-grid {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .tool-cat {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25rem;
+  }
+
+  @media (min-width: 600px) {
+    .tool-cat {
+      grid-template-columns: 11rem 1fr;
+      gap: 1.5rem;
+      align-items: baseline;
+    }
+  }
+
+  .tool-cat-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 1.05rem;
+    font-style: italic;
+  }
+
+  .tool-list {
+    color: var(--ink-muted);
+    line-height: 1.55;
+    font-size: 0.98rem;
+  }
+
+  /* Education */
+  .edu-item { margin-bottom: 1.1rem; }
+  .edu-item:last-child { margin-bottom: 0; }
+
+  .edu-degree {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 1.08rem;
+    margin: 0 0 0.2rem;
+    line-height: 1.3;
+  }
+
+  .edu-meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    margin: 0 0 0.3rem;
+    letter-spacing: 0.04em;
+  }
+
+  .edu-focus {
+    color: var(--ink-muted);
+    font-size: 0.98rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Publications */
+  .pub-list { list-style: none; padding: 0; margin: 0; }
+
+  .pub-list li {
+    padding: 0.4rem 0;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    border-bottom: 1px dotted var(--rule);
+    font-size: 0.98rem;
+  }
+
+  .pub-list li:last-child { border-bottom: none; }
+
+  .pub-cat {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-maroon);
+    margin: 1rem 0 0.5rem;
+  }
+
+  .pub-cat:first-child { margin-top: 0; }
+
+  /* Chatbot */
+  .chat-section {
+    background: var(--bg-elevated);
+    margin: var(--space-section) -1.5rem 0;
+    padding: 2rem 1.5rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  @media (min-width: 900px) {
+    .chat-section {
+      margin: var(--space-section) 0 0;
+      border-radius: 8px;
+      border: 1px solid var(--rule);
+      padding: 2.25rem;
+    }
+  }
+
+  .chat-intro { margin-bottom: 1.5rem; }
+
+  .chat-intro h2 {
+    font-style: italic;
+    margin-bottom: 0.4rem;
+  }
+
+  .chat-intro p {
+    color: var(--ink-muted);
+    font-size: 0.98rem;
+    margin: 0;
+  }
+
+  .chat-window {
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+
+  .chat-messages {
+    min-height: 180px;
+    max-height: 360px;
+    overflow-y: auto;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .chat-msg {
+    max-width: 85%;
+    padding: 0.65rem 0.95rem;
+    border-radius: 6px;
+    line-height: 1.5;
+    font-size: 0.98rem;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .chat-msg.user {
+    align-self: flex-end;
+    background: var(--accent-navy);
+    color: var(--bg);
+  }
+
+  .chat-msg.bot {
+    align-self: flex-start;
+    background: var(--bg-elevated);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+  }
+
+  .chat-msg.bot p { margin: 0 0 0.5rem; }
+  .chat-msg.bot p:last-child { margin-bottom: 0; }
+  .chat-msg.bot a { color: var(--accent-navy); }
+
+  .chat-input-row {
+    border-top: 1px solid var(--rule);
+    padding: 0.65rem;
+    display: flex;
+    gap: 0.5rem;
+    background: var(--bg);
+  }
+
+  .chat-input {
+    flex: 1;
+    border: 1px solid var(--rule);
+    background: var(--bg);
+    color: var(--ink);
+    padding: 0.55rem 0.8rem;
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+  }
+
+  .chat-input:focus {
+    outline: none;
+    border-color: var(--accent-navy);
+  }
+
+  .chat-send {
+    background: var(--accent-navy);
+    color: var(--bg);
+    border: none;
+    padding: 0.55rem 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    cursor: pointer;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s;
+  }
+
+  .chat-send:hover, .chat-send:focus-visible {
+    opacity: 0.85;
+    outline: none;
+  }
+
+  .chat-suggestions {
+    padding: 0.65rem 0.85rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    background: var(--bg-elevated);
+  }
+
+  .chat-suggestion {
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    color: var(--ink-muted);
+    padding: 0.3rem 0.7rem;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    cursor: pointer;
+    border-radius: 99px;
+    transition: all 0.2s;
+  }
+
+  .chat-suggestion:hover, .chat-suggestion:focus-visible {
+    border-color: var(--accent-navy);
+    color: var(--accent-navy);
+    outline: none;
+  }
+
+  /* Download */
+  .download-section {
+    margin-top: var(--space-section);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+  }
+
+  .download-btn {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--accent-navy);
+    text-decoration: none;
+    border: 1px solid var(--accent-navy);
+    padding: 0.65rem 1.75rem;
+    border-radius: 4px;
+    transition: all 0.25s ease;
+  }
+
+  .download-btn:hover, .download-btn:focus-visible {
+    background: var(--accent-navy);
+    color: var(--bg);
+    outline: none;
+  }
+
+  .download-note {
+    color: var(--ink-faint);
+    font-size: 0.78rem;
+    margin: 0.75rem 0 0;
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+
+  footer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    color: var(--ink-faint);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .layout > * { animation: fadeUp 0.6s ease forwards; }
+  .sidebar { animation-delay: 0.05s; }
+  .main { animation-delay: 0.15s; }
+
+  @media print {
+    .sidebar-controls, .sidebar-nav, .chat-section, .download-section, footer { display: none; }
+    body { background: white; color: black; }
+    .layout { display: block; }
+    .sidebar, .main { padding: 1rem; max-width: 100%; }
+    .collapsible-content { max-height: none !important; opacity: 1 !important; }
+    section { page-break-inside: avoid; margin-bottom: 1.5rem; }
+  }
+</style>
+</head>
+<body data-theme="light" data-size="normal">
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<div class="layout">
+
+  <aside class="sidebar" role="complementary">
+    <div class="sidebar-eyebrow">Curriculum Vitae · 2026</div>
+    <h1>Hector Rodriguez Valdes</h1>
+    <p class="sidebar-tagline">Digital Transformation &amp; Education Strategy Lead. AI, automation &amp; student-facing innovation. Founder of Quezzi.</p>
+
+    <div class="sidebar-contact">
+      <span class="sidebar-contact-row">Moonee Beach, NSW</span>
+      <span class="sidebar-contact-row"><a href="mailto:hector.rodriguez.valdes@gmail.com">hector.rodriguez.valdes@gmail.com</a></span>
+      <span class="sidebar-contact-row"><a href="tel:+61447498696">0447 498 696</a></span>
+      <span class="sidebar-contact-row"><a href="https://www.linkedin.com/in/hector-rodriguez-valdes" target="_blank" rel="noopener">LinkedIn</a></span>
+      <span class="sidebar-contact-row"><a href="https://hectorrodriguezvaldes.com" target="_blank" rel="noopener">hectorrodriguezvaldes.com</a></span>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="CV sections">
+      <div class="sidebar-nav-title">Sections</div>
+      <ul>
+        <li><a href="#summary"><span class="sidebar-nav-num">01</span><span>Summary</span></a></li>
+        <li><a href="#value"><span class="sidebar-nav-num">02</span><span>Value</span></a></li>
+        <li><a href="#achievements"><span class="sidebar-nav-num">03</span><span>Achievements</span></a></li>
+        <li><a href="#experience"><span class="sidebar-nav-num">04</span><span>Experience</span></a></li>
+        <li><a href="#tools"><span class="sidebar-nav-num">05</span><span>Tools</span></a></li>
+        <li><a href="#governance"><span class="sidebar-nav-num">06</span><span>Governance</span></a></li>
+        <li><a href="#education"><span class="sidebar-nav-num">07</span><span>Education</span></a></li>
+        <li><a href="#awards"><span class="sidebar-nav-num">08</span><span>Awards</span></a></li>
+        <li><a href="#ask"><span class="sidebar-nav-num">09</span><span>Ask</span></a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-controls" role="toolbar" aria-label="Display preferences">
+      <button class="ctrl-btn" id="size-btn" aria-label="Change text size" title="Change text size">
+        <span aria-hidden="true">A</span><span style="font-size: 1.1em;" aria-hidden="true">A</span>
+        <span id="size-label" style="font-size: 0.85em;">Size</span>
+      </button>
+      <button class="ctrl-btn" id="theme-btn" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle theme">
+        <span id="theme-icon" aria-hidden="true">☾</span>
+        <span>Theme</span>
+      </button>
+    </div>
+  </aside>
+
+  <main id="main" class="main">
+
+    <section id="summary" aria-labelledby="summary-h">
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <h2 id="summary-h">Summary</h2>
+      </div>
+      <p class="summary">
+        Digital transformation and education strategy leader with 10+ years' experience translating emerging technology, education needs, and organisational priorities into practical change. Strong record of linking strategy with delivery across academic, professional, compliance, and technology-adjacent teams &mdash; spanning AI adoption, business process automation, digital learning platforms, and assessment redesign. Postgraduate research background in applied ethics and ethics of emerging technologies supports balanced decision-making across innovation, risk, privacy, and public value.
+      </p>
+    </section>
+
+    <section id="value" aria-labelledby="value-h">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2 id="value-h">Value</h2>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <h3>Education-facing innovation</h3>
+          <p>Technology-enabled improvements supporting learners, teachers, and institutional quality.</p>
+        </div>
+        <div class="pillar">
+          <h3>Process improvement &amp; automation</h3>
+          <p>Workflow redesign and AI-enabled automation to eliminate manual bottlenecks at scale.</p>
+        </div>
+        <div class="pillar">
+          <h3>Strategy with delivery</h3>
+          <p>Translating priorities into practical frameworks, operating models, and implementation pathways.</p>
+        </div>
+        <div class="pillar">
+          <h3>Stakeholder influence</h3>
+          <p>Facilitation and change communication across academic, professional, and senior leadership levels.</p>
+        </div>
+        <div class="pillar">
+          <h3>Responsible adoption</h3>
+          <p>AI governance, ethics, risk management, privacy, and quality assurance at scale.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievements" aria-labelledby="achievements-h">
+      <div class="section-header">
+        <span class="section-number">03</span>
+        <h2 id="achievements-h">Selected Achievements</h2>
+      </div>
+      <div class="achievements">
+        <div class="achievement"><p>Led the pilot implementation of a new enterprise LMS (Brightspace), with outcomes shaping the university-wide rollout strategy.</p></div>
+        <div class="achievement"><p>Created AI-era assessment integrity frameworks now adopted as the standard across all School course offerings.</p></div>
+        <div class="achievement"><p>Introduced automation into the setup of 30+ subjects running six times per year, generating estimated annual savings exceeding $200K.</p></div>
+        <div class="achievement"><p>Founded Quezzi, an AI-powered SMS platform, taking it from concept to live product with paying subscribers across three international markets.</p></div>
+        <div class="achievement"><p>Delivered 10+ nationally funded digital capability subjects under Study Link / NPILF, broadening STEM participation and digital skills pathways in regional Australia.</p></div>
+        <div class="achievement"><p>Elected to the Charles Sturt University Academic Senate (2025) for the 2026–2028 term.</p></div>
+      </div>
+    </section>
+
+    <section id="experience" aria-labelledby="experience-h">
+      <div class="section-header">
+        <span class="section-number">04</span>
+        <h2 id="experience-h">Experience</h2>
+      </div>
+
+      <article class="role">
+        <header class="role-header">
+          <h3 class="role-title">Academic &amp; Digital Lead, Enabling Courses</h3>
+          <div class="role-meta">
+            <span>Charles Sturt University</span>
+            <span>2022 — Present</span>
+          </div>
+        </header>
+        <ul>
+          <li>Led pilot implementation of Brightspace across enabling courses, then drove division-wide adoption of digital and AI platforms across teaching, marking, curriculum design, and administration.</li>
+          <li>Designed AI-era assessment integrity frameworks in partnership with Academic Integrity and Compliance teams.</li>
+          <li>Identified business process improvement opportunities and introduced automation into recurring subject setup processes, significantly reducing workload allocation across 30+ subjects delivered six times per year.</li>
+          <li>Drove capability uplift across 20+ academic and professional staff through training, guides, consultation, and practical adoption support.</li>
+          <li>Advised Course Directors, School leadership, and university stakeholders up to Pro Vice-Chancellor level on AI strategy, governance, and scalable adoption models.</li>
+        </ul>
+      </article>
+
+      <article class="role">
+        <header class="role-header">
+          <h3 class="role-title">Founder, Quezzi <span style="font-style: italic; font-weight: 400; font-size: 0.95em;">— AI via SMS</span></h3>
+          <div class="role-meta">
+            <span>Australia / International</span>
+            <span>2025 — Present</span>
+          </div>
+        </header>
+        <ul>
+          <li>Architected an AI-powered conversational platform for low-connectivity contexts, integrating OpenAI and Google APIs with mobile service providers.</li>
+          <li>Built evaluation frameworks measuring response quality, model performance, user engagement, and service reliability to drive iterative improvement.</li>
+          <li>Managed product strategy, analytics, marketing, subscription design, and financial modelling across AU, US, and Canada markets.</li>
+        </ul>
+      </article>
+
+      <article class="role">
+        <header class="role-header">
+          <h3 class="role-title">Acting Course Director, Enabling and Transition Courses</h3>
+          <div class="role-meta">
+            <span>Charles Sturt University</span>
+            <span>Sep 2024, Sep 2025 &amp; Mar 2026</span>
+          </div>
+        </header>
+        <ul>
+          <li>Managed operations for 20+ academic and professional staff, overseeing delivery, resourcing, and day-to-day decision-making.</li>
+          <li>Represented the School in strategic projects involving student success, systems, and digital service redesign.</li>
+        </ul>
+      </article>
+
+      <article class="role">
+        <header class="role-header">
+          <h3 class="role-title">Academic Project Manager, NPILF / Study Link</h3>
+          <div class="role-meta">
+            <span>Charles Sturt University</span>
+            <span>2024</span>
+          </div>
+        </header>
+        <ul>
+          <li>Led delivery of 10+ nationally funded Study Link digital capability subjects (coding, cybersecurity, cyber ethics) designed to broaden STEM participation in regional Australia.</li>
+          <li>Coordinated cross-functional stakeholders to align content development, enabling pedagogy, project milestones, and workforce-relevant outcomes.</li>
+          <li>Supported inclusive curriculum design by embedding First Nations perspectives and equity-focused approaches.</li>
+          <li>Contributed to the introduction of Cogniti AI agents into Study Link subjects, piloting an ethically grounded and scalable approach to student engagement.</li>
+        </ul>
+      </article>
+
+      <article class="role">
+        <header class="role-header">
+          <h3 class="role-title">Lecturer / Associate Lecturer, Enabling Education and Philosophy</h3>
+          <div class="role-meta">
+            <span>Charles Sturt University</span>
+            <span>2013 — 2022</span>
+          </div>
+        </header>
+        <ul>
+          <li>Designed and delivered subjects across enabling education, academic literacies, ethics, logic, and critical reasoning, with a strong focus on equity, transition, and student success.</li>
+          <li>Used student performance data, feedback, and learning analytics to iteratively improve learning design, engagement, and progression outcomes.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="tools" aria-labelledby="tools-h">
+      <div class="section-header">
+        <span class="section-number">05</span>
+        <h2 id="tools-h">Platforms, Tools &amp; Methods</h2>
+        <button class="collapse-toggle" aria-expanded="false" aria-controls="tools-content" data-collapse>
+          <span class="toggle-icon" aria-hidden="true">▾</span>
+          <span class="sr-only">Toggle section</span>
+        </button>
+      </div>
+      <div class="collapsible-content" id="tools-content" aria-hidden="true">
+        <div class="tools-grid">
+          <div class="tool-cat">
+            <span class="tool-cat-name">AI &amp; Integration</span>
+            <span class="tool-list">OpenAI (GPT models, API), Anthropic Claude, Microsoft Copilot, Google APIs, Cogniti AI learning platform.</span>
+          </div>
+          <div class="tool-cat">
+            <span class="tool-cat-name">Education Platforms</span>
+            <span class="tool-list">Brightspace, Blackboard, Turnitin, learning analytics, online and blended delivery design.</span>
+          </div>
+          <div class="tool-cat">
+            <span class="tool-cat-name">Approach</span>
+            <span class="tool-list">Workflow mapping and automation; iterative user-feedback evaluation; Universal Design for Learning principles.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="governance" aria-labelledby="gov-h">
+      <div class="section-header">
+        <span class="section-number">06</span>
+        <h2 id="gov-h">Governance &amp; Service</h2>
+        <button class="collapse-toggle" aria-expanded="false" aria-controls="gov-content" data-collapse>
+          <span class="toggle-icon" aria-hidden="true">▾</span>
+          <span class="sr-only">Toggle section</span>
+        </button>
+      </div>
+      <div class="collapsible-content" id="gov-content" aria-hidden="true">
+        <article class="role">
+          <header class="role-header">
+            <h3 class="role-title">Elected Member, Academic Senate</h3>
+            <div class="role-meta">
+              <span>Charles Sturt University</span>
+              <span>2026 — 2028 term</span>
+            </div>
+          </header>
+          <ul>
+            <li>Contribute to institutional governance and strategic academic decision-making.</li>
+          </ul>
+        </article>
+        <article class="role">
+          <header class="role-header">
+            <h3 class="role-title">School Assessment Committee Member (SAC)</h3>
+            <div class="role-meta">
+              <span>School of Education, Charles Sturt University</span>
+              <span>2023 — Present</span>
+            </div>
+          </header>
+          <ul>
+            <li>Provide governance oversight on assessment standards, moderation, quality assurance, and academic integrity, including AI-related risk and policy considerations.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="education" aria-labelledby="edu-h">
+      <div class="section-header">
+        <span class="section-number">07</span>
+        <h2 id="edu-h">Education</h2>
+        <button class="collapse-toggle" aria-expanded="false" aria-controls="edu-content" data-collapse>
+          <span class="toggle-icon" aria-hidden="true">▾</span>
+          <span class="sr-only">Toggle section</span>
+        </button>
+      </div>
+      <div class="collapsible-content" id="edu-content" aria-hidden="true">
+        <div class="edu-item">
+          <h3 class="edu-degree">Master of Arts: Professional and Applied Ethics (Honours)</h3>
+          <p class="edu-meta">Australian National University · 2012</p>
+          <p class="edu-focus">Focus: ethics of emerging technologies.</p>
+        </div>
+        <div class="edu-item">
+          <h3 class="edu-degree">Postgraduate Certificate in Learning and Teaching in Higher Education</h3>
+          <p class="edu-meta">Charles Sturt University · 2025</p>
+        </div>
+        <div class="edu-item">
+          <h3 class="edu-degree">Advanced Doctoral Research in Applied Ethics (3 years)</h3>
+          <p class="edu-meta">Charles Sturt University · Centre for Applied Philosophy and Public Ethics</p>
+          <p class="edu-focus">Focus: ethics of emerging technologies and responsible innovation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="awards" aria-labelledby="awards-h">
+      <div class="section-header">
+        <span class="section-number">08</span>
+        <h2 id="awards-h">Awards &amp; Publications</h2>
+        <button class="collapse-toggle" aria-expanded="false" aria-controls="awards-content" data-collapse>
+          <span class="toggle-icon" aria-hidden="true">▾</span>
+          <span class="sr-only">Toggle section</span>
+        </button>
+      </div>
+      <div class="collapsible-content" id="awards-content" aria-hidden="true">
+        <p class="pub-cat">Awards</p>
+        <ul class="pub-list">
+          <li>Excellence Award Winner: Social Responsibility — Charles Sturt University, 2024.</li>
+          <li>Provost Highly Commended Award — Charles Sturt University, 2021.</li>
+        </ul>
+
+        <p class="pub-cat">Conference Presentations</p>
+        <ul class="pub-list">
+          <li>Rodriguez, V. H. (2023). <em>A Pedagogical Approach to Fostering Critical Thinking</em>. CSU EDx.</li>
+          <li>Rodriguez, V. H. (2021). <em>A Good Approach to Giving Feedback (Video Feedback)</em>. CSU EDx.</li>
+        </ul>
+
+        <p class="pub-cat">Publications</p>
+        <ul class="pub-list">
+          <li>Weckert, J., Rodriguez, V. H., &amp; Soltanzadeh, S. (2016). <em>A Problem with Societal Desirability as a Component of Responsible Research and Innovation</em>. <em>NanoEthics</em>.</li>
+          <li>Rodriguez, V. H. (2014). <em>Benefits Sharing</em>. In <em>Encyclopedia of Science, Technology and Ethics</em>. Cengage Gale.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="ask" class="chat-section" aria-labelledby="ask-h">
+      <div class="chat-intro">
+        <h2 id="ask-h">Ask About My Experience</h2>
+        <p>An interactive way to explore my background. Try a suggested question or type your own.</p>
+      </div>
+      <div class="chat-window">
+        <div class="chat-messages" id="chat-messages" role="log" aria-live="polite" aria-label="Conversation">
+          <div class="chat-msg bot">
+            <p>Hello — I'm an interactive guide to Hector's experience. Ask me about his work in AI, education, transformation, or anything you'd like to know.</p>
+          </div>
+        </div>
+        <div class="chat-suggestions" role="group" aria-label="Suggested questions">
+          <button class="chat-suggestion" data-q="Tell me about Quezzi">Quezzi</button>
+          <button class="chat-suggestion" data-q="What AI tools have you worked with?">AI tools</button>
+          <button class="chat-suggestion" data-q="Tell me about the Brightspace pilot">Brightspace pilot</button>
+          <button class="chat-suggestion" data-q="How did you achieve the $200K savings?">$200K savings</button>
+          <button class="chat-suggestion" data-q="What is your ethics background?">Ethics</button>
+          <button class="chat-suggestion" data-q="Tell me about assessment integrity">Assessment integrity</button>
+        </div>
+        <form class="chat-input-row" id="chat-form" autocomplete="off">
+          <label for="chat-input" class="sr-only">Type your question</label>
+          <input type="text" id="chat-input" class="chat-input" placeholder="Ask a question..." aria-label="Your question">
+          <button type="submit" class="chat-send">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <div class="download-section">
+      <a href="#" class="download-btn" id="download-link" download="Hector_Rodriguez_Valdes_CV.pdf">
+        Download CV (PDF)
+      </a>
+      <p class="download-note">Prefer the traditional format?</p>
+    </div>
+
+    <footer>© 2026 Hector Rodriguez Valdes</footer>
+
+  </main>
+</div>
+
+<script>
+  // THEME
+  const themeBtn = document.getElementById('theme-btn');
+  const themeIcon = document.getElementById('theme-icon');
+  const body = document.body;
+
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    body.setAttribute('data-theme', 'dark');
+    themeIcon.textContent = '☀';
+    themeBtn.setAttribute('aria-pressed', 'true');
+  }
+
+  themeBtn.addEventListener('click', () => {
+    const next = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    body.setAttribute('data-theme', next);
+    themeIcon.textContent = next === 'dark' ? '☀' : '☾';
+    themeBtn.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
+  });
+
+  // FONT SIZE
+  const sizeBtn = document.getElementById('size-btn');
+  const sizeLabel = document.getElementById('size-label');
+  const sizes = ['normal', 'large', 'xlarge'];
+  const sizeLabels = { normal: 'Size', large: 'Large', xlarge: 'XL' };
+  let sizeIdx = 0;
+  sizeBtn.addEventListener('click', () => {
+    sizeIdx = (sizeIdx + 1) % sizes.length;
+    body.setAttribute('data-size', sizes[sizeIdx]);
+    sizeLabel.textContent = sizeLabels[sizes[sizeIdx]];
+    sizeBtn.setAttribute('aria-label', `Text size: ${sizeLabels[sizes[sizeIdx]]}. Click to change.`);
+  });
+
+  // COLLAPSIBLES
+  document.querySelectorAll('[data-collapse]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const targetId = btn.getAttribute('aria-controls');
+      const target = document.getElementById(targetId);
+
+      if (expanded) {
+        target.style.maxHeight = target.scrollHeight + 'px';
+        requestAnimationFrame(() => {
+          target.style.maxHeight = '0px';
+          target.setAttribute('aria-hidden', 'true');
+        });
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        target.setAttribute('aria-hidden', 'false');
+        target.style.maxHeight = target.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+        setTimeout(() => {
+          if (btn.getAttribute('aria-expanded') === 'true') {
+            target.style.maxHeight = 'none';
+          }
+        }, 400);
+      }
+    });
+  });
+
+  // SCROLLSPY
+  const navLinks = document.querySelectorAll('.sidebar-nav a');
+  const sections = document.querySelectorAll('section[id]');
+
+  function updateActive() {
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    let current = '';
+    sections.forEach(s => {
+      const top = s.offsetTop - 100;
+      if (scrollY >= top) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+
+  window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
+
+  // CHATBOT
+  const messages = document.getElementById('chat-messages');
+  const form = document.getElementById('chat-form');
+  const input = document.getElementById('chat-input');
+
+  const responses = [
+    {
+      keywords: ['quezzi', 'sms', 'startup', 'business', 'founder', 'entrepre'],
+      response: `<p>Quezzi is an AI-powered SMS platform I founded in 2025. It delivers conversational AI support to users in low-connectivity contexts where smartphone apps and high-bandwidth tools aren't accessible.</p><p>I architected the technical stack — integrating OpenAI and Google APIs with mobile service providers, designing conditional routing, prompt frameworks, and conversation memory logic. I also built evaluation frameworks measuring response quality, model performance, and user engagement to drive data-informed iteration.</p><p>It's now live with paying subscribers across Australia, the US, and Canada.</p>`
+    },
+    {
+      keywords: ['brightspace', 'lms', 'learning management', 'pilot', 'platform pilot'],
+      response: `<p>I led the pilot implementation of Brightspace (the new enterprise LMS) across the Enabling Courses at Charles Sturt University. This was the institutional pilot for the broader university transition.</p><p>The work involved managing the operational rollout across multiple subjects and staff, evaluating outcomes against student and staff experience criteria, and producing recommendations that informed the university-wide adoption strategy.</p>`
+    },
+    {
+      keywords: ['200k', '200,000', 'savings', 'cost', 'automation', 'efficiency', 'productivity'],
+      response: `<p>The $200K+ in estimated annual savings came from introducing automation into recurring subject setup processes. The Enabling Courses run 30+ subjects, and each runs six times per year — a high volume of repetitive setup work that was previously manual.</p><p>By identifying the workflow pain points and implementing automated processes, I significantly reduced workload allocation across that volume. The savings figure reflects the equivalent staff time freed up annually for higher-value work.</p>`
+    },
+    {
+      keywords: ['ethics', 'philosophy', 'phd', 'research', 'transhumanism', 'applied ethics'],
+      response: `<p>My postgraduate background is in applied ethics, with a specific focus on the ethics of emerging technologies. I hold a Master of Arts (Honours) from the Australian National University, and completed three years of doctoral research at Charles Sturt's Centre for Applied Philosophy and Public Ethics.</p><p>This background isn't decorative — it's a practical asset in AI work. It means I think rigorously about responsibility, fairness, transparency, and the appropriate boundaries of AI in human decision-making.</p>`
+    },
+    {
+      keywords: ['ai tools', 'ai platforms', 'tools used', 'technology stack', 'tech stack', 'what ai', 'which ai'],
+      response: `<p>I work with a range of enterprise AI platforms day-to-day:</p><p>AI &amp; integration: OpenAI (GPT models, API), Anthropic Claude, Microsoft Copilot, Google APIs, and Cogniti AI learning platform.</p><p>Education platforms: Brightspace, Blackboard, Turnitin, learning analytics, online and blended delivery design.</p>`
+    },
+    {
+      keywords: ['assessment integrity', 'academic integrity', 'integrity framework', 'cheating', 'genai'],
+      response: `<p>I designed AI-era assessment integrity frameworks for the Enabling Courses in partnership with Academic Integrity and Compliance teams.</p><p>The frameworks address the practical challenges of maintaining assessment integrity in an environment where students and staff have access to generative AI. They balance innovation, student learning, privacy, risk, and quality assurance — and have since been adopted as the standard approach across all course offerings in the School.</p>`
+    },
+    {
+      keywords: ['stakeholder', 'pvc', 'pro vice', 'leadership', 'executive', 'senior'],
+      response: `<p>I work with stakeholders across multiple levels. Day-to-day, I collaborate with academic and professional staff, Academic Integrity and Compliance teams, and curriculum design partners.</p><p>At the senior level, I've advised Course Directors, School leadership, and university stakeholders up to Pro Vice-Chancellor level on AI strategy, governance, implementation risks, and scalable adoption models.</p>`
+    },
+    {
+      keywords: ['governance', 'risk', 'compliance', 'policy', 'framework'],
+      response: `<p>Governance is central to how I approach AI adoption. Real transformation fails without it — and the governance must be grounded in something deeper than compliance checklists.</p><p>I've contributed to the design of AI governance and operating models defining acceptable use, risk thresholds, data privacy considerations, and quality assurance standards.</p>`
+    },
+    {
+      keywords: ['npilf', 'study link', 'cyber', 'coding', 'national funding', 'capability'],
+      response: `<p>As Academic Project Manager for NPILF / Study Link in 2024, I led the delivery of 10+ nationally funded digital capability subjects — including coding, cybersecurity, and cyber ethics.</p><p>The subjects were designed to broaden STEM participation and digital skills development in regional Australia. The work involved coordinating cross-functional stakeholders, aligning content with funding milestones, and embedding First Nations perspectives into curriculum design.</p>`
+    },
+    {
+      keywords: ['contact', 'email', 'reach', 'how can i', 'get in touch'],
+      response: `<p>The best ways to reach me:</p><p>📧 hector.rodriguez.valdes@gmail.com<br>📱 0447 498 696<br>🔗 <a href="https://www.linkedin.com/in/hector-rodriguez-valdes" target="_blank" rel="noopener">LinkedIn</a></p>`
+    },
+    {
+      keywords: ['why', 'why hire', 'why you', 'differentiator', 'unique', 'stand out'],
+      response: `<p>The combination is what's distinctive: I'm not just an AI implementer or just a strategist or just an educator. I bring all three together.</p><p>I have hands-on AI product development experience (Quezzi), institutional transformation experience (Brightspace pilot, AI adoption), and a postgraduate ethics research background that grounds my approach to responsible adoption. I've also delivered concrete outcomes — automation savings of $200K+, frameworks adopted institution-wide, and a live AI product across three countries.</p>`
+    }
+  ];
+
+  function findResponse(query) {
+    const q = query.toLowerCase();
+    let best = null;
+    let bestScore = 0;
+    for (const r of responses) {
+      let score = 0;
+      for (const kw of r.keywords) {
+        if (q.includes(kw)) score += kw.length;
+      }
+      if (score > bestScore) { bestScore = score; best = r; }
+    }
+    if (best) return best.response;
+    return `<p>Good question — I don't have a pre-prepared answer for that one. The best way to get into specifics is to reach out directly:</p><p>📧 <a href="mailto:hector.rodriguez.valdes@gmail.com">hector.rodriguez.valdes@gmail.com</a></p><p>You can also try one of the suggested questions above.</p>`;
+  }
+
+  function addMessage(content, isUser) {
+    const div = document.createElement('div');
+    div.className = `chat-msg ${isUser ? 'user' : 'bot'}`;
+    if (isUser) div.textContent = content;
+    else div.innerHTML = content;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function sendQuestion(q) {
+    if (!q.trim()) return;
+    addMessage(q, true);
+    setTimeout(() => addMessage(findResponse(q), false), 400);
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const q = input.value;
+    if (q.trim()) { sendQuestion(q); input.value = ''; }
+  });
+
+  document.querySelectorAll('.chat-suggestion').forEach(btn => {
+    btn.addEventListener('click', () => sendQuestion(btn.dataset.q));
+  });
+
+  document.getElementById('download-link').addEventListener('click', (e) => {
+    e.preventDefault();
+    alert('Download link placeholder. Replace href="#" with your hosted PDF URL.');
+  });
+</script>
+
+</body>
+</html>
