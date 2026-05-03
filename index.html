@@ -1105,7 +1105,7 @@
     </section>
 
     <div class="download-section">
-      <a href="#" class="download-btn" id="download-link" download="Hector_Rodriguez_Valdes_CV.pdf">
+      <a href="cv.pdf" class="download-btn" id="download-link" download="Hector_Rodriguez_Valdes_CV.pdf">
         Download CV (PDF)
       </a>
       <p class="download-note">Prefer the traditional format?</p>
@@ -1286,10 +1286,6 @@
     btn.addEventListener('click', () => sendQuestion(btn.dataset.q));
   });
 
-  document.getElementById('download-link').addEventListener('click', (e) => {
-    e.preventDefault();
-    alert('Download link placeholder. Replace href="#" with your hosted PDF URL.');
-  });
 </script>
 
 </body>
